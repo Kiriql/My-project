@@ -4,17 +4,29 @@ using UnityEngine;
 
 public class pickup : MonoBehaviour
 {
-    vari v = new vari();
+    [SerializeField] private vari v;
     public GameObject ingrid;
+    public Animator anim;
+    GameObject player;
+
+    void Start()
+    {
+        player = GameObject.Find("body");
+        anim = player.GetComponent<Animator>();
+        player = GameObject.Find("Player");
+        v = player.GetComponent<vari>();
+    }
 
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.name == "Character")
         {
             if (Input.GetKeyDown(KeyCode.E))
-            {
-                if(v.fullArm == false)
+            {   
+                anim.ResetTrigger("PickUp");
+                if(!v.fullArm)
                 {
+                    anim.SetTrigger("PickUp");
                     v.currentIng = ingrid;
                     v.currentIng.SetActive(true);
                     v.fullArm = true;

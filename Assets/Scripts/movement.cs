@@ -5,7 +5,7 @@ using UnityEngine;
 public class movement : MonoBehaviour
 {
     public CharacterController controller;
-
+    public Animator anim;
     public float speed = 8f;
 
     void Update()
@@ -18,7 +18,12 @@ public class movement : MonoBehaviour
         {
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
+            anim.SetBool("isWalking", true);
             controller.Move(-direction * speed * Time.deltaTime);
+        }
+        else
+        {
+            anim.SetBool("isWalking", false);
         }
     }
 }

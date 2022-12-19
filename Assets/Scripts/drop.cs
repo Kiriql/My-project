@@ -4,15 +4,31 @@ using UnityEngine;
 
 public class drop : MonoBehaviour
 {
-    vari v = new vari();
+    [SerializeField] private vari v;
+    public Animator anim;
+    GameObject player;
+
+    void Start()
+    {
+        player = GameObject.Find("body");
+        anim = player.GetComponent<Animator>();
+        player = GameObject.Find("Player");
+        v = player.GetComponent<vari>();
+    }
     private void OnTriggerStay(Collider other)
     {
         if(other.gameObject.name == "Character")
         {
+            anim.ResetTrigger("PickUp");
             if (Input.GetKeyDown(KeyCode.E))
             {
-                v.currentIng.SetActive(false);
-                v.currentIng = null;
+                anim.SetTrigger("PickUp");
+                if(v.currentIng != null)
+                {
+                    v.currentIng.SetActive(false);
+                    v.fullArm = false;
+                    v.currentIng = null;
+                }
             }
 
         }
