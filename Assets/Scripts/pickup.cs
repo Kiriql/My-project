@@ -8,7 +8,6 @@ public class pickup : MonoBehaviour
     public GameObject ingrid;
     public Animator anim;
     GameObject player;
-
     void Start()
     {
         player = GameObject.Find("body");
@@ -28,8 +27,24 @@ public class pickup : MonoBehaviour
                 {
                     anim.SetTrigger("PickUp");
                     v.currentIng = ingrid;
+                    if (v.currentIng.name == "Pot")
+                    {
+                        if (v.galochkaPot.activeSelf)
+                        {
+                            v.PotCheck = true;
+                        }
+                        v.Pot.SetActive(false);
+                    }
                     v.currentIng.SetActive(true);
                     v.fullArm = true;
+                }
+                else if (v.currentIng.name == "Pot")
+                {
+                    anim.SetTrigger("PickUp");
+                    v.Pot.SetActive(true);
+                    v.currentIng.SetActive(false);
+                    v.fullArm = false;
+                    v.currentIng = null;
                 }
             }
             

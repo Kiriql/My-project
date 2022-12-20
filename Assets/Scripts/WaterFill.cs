@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class drop : MonoBehaviour
+public class WaterFill : MonoBehaviour
 {
     [SerializeField] private vari v;
     public Animator anim;
     GameObject player;
+
+    public GameObject waterInHand;
+    public GameObject waterInPot;
 
     void Start()
     {
@@ -15,22 +18,23 @@ public class drop : MonoBehaviour
         player = GameObject.Find("Player");
         v = player.GetComponent<vari>();
     }
+
     private void OnTriggerStay(Collider other)
     {
-        if(other.gameObject.name == "Character")
+        if (other.gameObject.name == "Character")
         {
-            anim.ResetTrigger("PickUp");
             if (Input.GetKeyDown(KeyCode.E))
             {
-                anim.SetTrigger("PickUp");
-                if(v.currentIng != null & v.currentIng.name != "Pot")
+                anim.ResetTrigger("PickUp");
+                if (v.currentIng.name == "Pot")
                 {
-                    v.currentIng.SetActive(false);
-                    v.fullArm = false;
-                    v.currentIng = null;
+                    anim.SetTrigger("PickUp");
+                    waterInHand.SetActive(true);
+                    waterInPot.SetActive(true);
                 }
             }
 
         }
     }
+
 }

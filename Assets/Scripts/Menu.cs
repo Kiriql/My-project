@@ -9,6 +9,10 @@ public class Menu : MonoBehaviour
         Application.LoadLevel("MainScene");
     }
 
+    public void GoToMenu()
+    {
+        Application.LoadLevel("Menu");
+    }
     public void Exit()
     {
         Application.Quit();

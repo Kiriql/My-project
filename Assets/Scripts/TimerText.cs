@@ -7,6 +7,7 @@ public class TimerText: MonoBehaviour
 {
     public float time = 300;
     public TMP_Text timerText;
+    public GameObject lose;
  
     private float _timeLeft = 0f;
  
@@ -24,6 +25,14 @@ public class TimerText: MonoBehaviour
     {
         _timeLeft = time;
         StartCoroutine(StartTimer());
+    }
+    
+    void Update()
+    {
+        if (_timeLeft == 0)
+        {
+            lose.SetActive(true);
+        }
     }
  
     private void UpdateTimeText()
