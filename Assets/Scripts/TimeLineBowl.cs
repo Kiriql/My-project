@@ -10,8 +10,10 @@ public class TimeLineBowl: MonoBehaviour
     Image timerBar;
     public Image image;
     public float maTime = 20f;
+    [SerializeField] private vari v;
+    GameObject player;
+    int i = 0;
     public float timeLeft;
-    public GameObject krestik;
     public GameObject galochka;
     public GameObject step2;
     public TMP_Text text;
@@ -21,6 +23,8 @@ public class TimeLineBowl: MonoBehaviour
     {
         timerBar = GetComponent<Image>();
         timeLeft = maTime;
+        player = GameObject.Find("Player");
+        v = player.GetComponent<vari>();
     }
 
     // Update is called once per frame
@@ -31,19 +35,18 @@ public class TimeLineBowl: MonoBehaviour
             timeLeft -= Time.deltaTime;
             timerBar.fillAmount = timeLeft / maTime;
         }
-        else if (timeLeft > -120)
+        else
         {
-            timeLeft -= Time.deltaTime;
             image.color = Color.clear;
+            if (i == 0)
+            {
+                i++;
+                v.ChangeText();
+            }
             timerBar.color = Color.clear;
             galochka.SetActive(true);
             step2.SetActive(true);
             text.text = "0 / 2";
-        }
-        else
-        {
-            galochka.SetActive(false);
-            krestik.SetActive(true);
         }
 
         if (timeLeft <= 10 & timeLeft >= 5)

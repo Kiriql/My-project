@@ -6,6 +6,7 @@ public class WaterFill : MonoBehaviour
 {
     [SerializeField] private vari v;
     public Animator anim;
+    int i = 0;
     GameObject player;
 
     public GameObject waterInHand;
@@ -29,6 +30,11 @@ public class WaterFill : MonoBehaviour
                 if (v.currentIng.name == "Pot")
                 {
                     anim.SetTrigger("PickUp");
+                    if (i == 0)
+                    {
+                        i++;
+                        v.ChangeText();
+                    }
                     waterInHand.SetActive(true);
                     waterInPot.SetActive(true);
                 }

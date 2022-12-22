@@ -31,6 +31,7 @@ public class RecipeForPot : MonoBehaviour
                 if (v.fullArm & water.activeSelf & count < 2)
                 {
                     anim.SetTrigger("PickUp");
+                    v.ChangeText();
                     v.currentIng.SetActive(false);
                     v.fullArm = false;
                     v.CheckRecipe += v.currentIng.name;

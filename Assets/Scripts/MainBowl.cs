@@ -18,7 +18,6 @@ public class MainBowl : MonoBehaviour
     public GameObject kvas;
 
     public GameObject galochka;
-    public GameObject krestik;
 
     public GameObject step1;
     public GameObject step2;
@@ -45,30 +44,25 @@ public class MainBowl : MonoBehaviour
                 if (v.fullArm & count < 3 & v.currentIng.name == "Pot" & water.activeSelf)
                 {
                     anim.SetTrigger("PickUp");
+                    step1.SetActive(true);
+                    v.ChangeText();
                     water.SetActive(false);
                     waterInHand.SetActive(false);
                     //v.fullArm = false;
                     v.CheckRecipe += v.currentIng.name;
-                    if (v.PotCheck)
-                    {
-                        v.CheckRecipe += "True";
-                    }
-                    else
-                    {
-                        v.CheckRecipe += "False";
-                    }
                     //v.currentIng = null;
                     count += 1;
                     countBowl.text = count.ToString() + " / 3";
                     if (count == 3)
                     {
                         TimeLineBowl.SetActive(true);
-                        step1.SetActive(true);
+                     
                     }
                 }
                 else if (v.fullArm & count < 3 & v.currentIng.name != "Pot")
                 {
                     anim.SetTrigger("PickUp");
+                    v.ChangeText();
                     v.currentIng.SetActive(false);
                     v.fullArm = false;
                     v.CheckRecipe += v.currentIng.name;
@@ -78,20 +72,13 @@ public class MainBowl : MonoBehaviour
                     if (count == 3)
                     {
                         TimeLineBowl.SetActive(true);
-                        step1.SetActive(true);
+
                     }
                 }
                 else if(v.fullArm & count2 < 2 & v.currentIng.name == "Pot" & water.activeSelf)
                 {
-                    if (galochka.activeSelf)
-                    {
-                        v.CheckRecipe += "True";
-                    }
-                    else if (krestik.activeSelf)
-                    {
-                        v.CheckRecipe += "False";
-                    }
                     TimeLineBowl.SetActive(false);
+                    v.ChangeText();
                     anim.SetTrigger("PickUp");
                     water.SetActive(false);
                     waterInHand.SetActive(false);
@@ -104,22 +91,14 @@ public class MainBowl : MonoBehaviour
                     {
                         countBowl.text = "Готово!";
                         galochka.SetActive(false);
-                        krestik.SetActive(false);
                         step3.SetActive(true);
                     }
                 }
                 else if(v.fullArm & count2 < 2 & v.currentIng.name != "Pot")
                 {
-                    if (galochka.activeSelf)
-                    {
-                        v.CheckRecipe += "True";
-                    }
-                    else if (krestik.activeSelf)
-                    {
-                        v.CheckRecipe += "False";
-                    }
                     TimeLineBowl.SetActive(false);
                     anim.SetTrigger("PickUp");
+                    v.ChangeText();
                     v.currentIng.SetActive(false);
                     v.fullArm = false;
                     v.CheckRecipe += v.currentIng.name;
@@ -130,7 +109,6 @@ public class MainBowl : MonoBehaviour
                     {
                         countBowl.text = "Готово!";
                         galochka.SetActive(false);
-                        krestik.SetActive(false);
                         step3.SetActive(true);
                     }
                 }
